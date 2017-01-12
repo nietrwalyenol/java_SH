@@ -18,16 +18,23 @@ import javax.persistence.TemporalType;
 
 @Entity
 @NamedQueries({ 
-
+	@NamedQuery(name = "donation.all", query = "Select d from Donation d"),
+	@NamedQuery(name = "donation.byId", query = "Select d from Donation d where d.id = :id"),
+	@NamedQuery(name = "donation.byPlace", query = "Select d from Donation d where d.place = :place")
 })
 
 public class Donation {
 
 	private Long id;
 	private String place = "";
-	private Date donationDate = new Date();
-  private List<Fluid> fluids = new ArrayList<Fluid>();
+	private List<Fluid> fluids = new ArrayList<Fluid>();
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}	
+	
 	public void setId(Long id) {
 		this.id = id;
 	}	
@@ -40,12 +47,12 @@ public class Donation {
 		this.place = place;
 	}
   
-	public Date getDonationDate() {
-		return donationDate;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	public List<Fluid> getFluids() {
+		return fluids;
 	}
-  
-	public void setDonationDate(Date donationDate) {
-		this.donationDate = donationDate;
+	public void setFluids(List<Fluid> fluids) {
+		this.fluids = fluids;
 	}
 
 }
