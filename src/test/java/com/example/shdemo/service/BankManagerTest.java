@@ -59,10 +59,10 @@ public class BankManagerTest {
 		fluid1.setInDonation(true);
 		
 		bankManager.addDonation(donation1);
-  }
+  	}
   
-  @Before
-  public void setup1(){
+	@Before
+	public void setup1(){
 		if(bankManager.findDonationByType(TYPE_1) == null){
 		Fluid fluid = new Fluid();
 		fluid.setType(TYPE_2);
@@ -77,7 +77,51 @@ public class BankManagerTest {
 		
 		bankManager.addDonation(donation);
 		}
+ 	}
+	
+	@Test
+	public void addDonation(){
+		Donation donation = new Donation();
+		donation.setType(TYPE_1);
+		
+		bankManager.addDonation(donation);
+		Donation recievedDonation = bankManager.findDonationByType(TYPE_1);
+		assertEquals(TYPE_1, recievedDonation.getType());
 	}
+	
+	@Test
+	public void editDonation(){
+		Donation donation = bankManager.findDonationByType(TYPE_2);
+		kategoria.setType("Changed");
+		Long DonationId = donation.getId();
+		bankManager.editDonation(donation);
+		
+		Donation donation2 = bankManager.findDonationById(DonationId);
+		
+		assertEquals("Changed", donation2.getType());
+	}
+	
+	@Test
+	public void deleteDonation(){
+		int DonationCount = bankManager.getAllDonations().size();
+		
+		Donation donation = bankManager.findDonationByType(TYPE_1);
+		Long DonationId = donation.getId();
+		bankManager.deleteDonation(donation);
+		
+		assertEquals(null, bankManager.findDonationById(DonationId));
+		assertEquals(DonationCount - 1, bankManager.getAllDonations().size());
+	}
+	
+	@Test
+	public void getDonationById(){
+		Donation donation = bankManager.findDonationByType(TYPE_1);
+		
+		Donation byId = bankManager.findDonationById(donation.getId());
+		
+		assertEquals(donation.getId(), byId.getId());
+	}
+
     
   
 }
