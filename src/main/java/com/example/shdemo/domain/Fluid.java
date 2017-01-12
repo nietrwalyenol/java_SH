@@ -9,7 +9,8 @@ import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({
-
+	@NamedQuery(name = "fluid.all", query = "Select f from Fluid f"),
+	@NamedQuery(name = "fluid.byId", query = "Select f from Fluid f where f.id = :id"),
 })
 
 public class Fluid {
@@ -17,9 +18,15 @@ public class Fluid {
 	private Long id;
 	private String type;
 	private int volume;
-  private int value;
+	private int value;
 	private Boolean availability = false;
   
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	public Long getId() {
+		return id;
+	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -40,7 +47,7 @@ public class Fluid {
 		this.volume = volume;
 	}
   
-  public String getValue() {
+	public String getValue() {
 		return value;
 	}
 
