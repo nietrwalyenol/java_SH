@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.shdemo.domain.Fluid;
 import com.example.shdemo.domain.Donation;
+import com.example.shdemo.domain.Fluid;
+
 
 @Component
 @Transactional
@@ -29,7 +30,7 @@ public class BankManagerHibernate implements BankManager {
 	}
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Donation> getAllDonations() {
+	public List<Donation> getAllDonation() {
 		return sessionFactory.getCurrentSession().getNamedQuery("donation.all").list();
 	}
 
@@ -43,8 +44,8 @@ public class BankManagerHibernate implements BankManager {
 	}
 
 	@Override
-	public Donation findDonationById(Long id) {
-		return (donation) sessionFactory.getCurrentSession().get(Donation.class, id);
+	public Donation findDonationbyId(Long id) {
+		return (Donation) sessionFactory.getCurrentSession().get(Donation.class, id);
 	}
 
 	@Override
@@ -74,7 +75,7 @@ public class BankManagerHibernate implements BankManager {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Fluid> getAllFluids() {
+	public List<Fluid> getAllFluid() {
 		return sessionFactory.getCurrentSession().getNamedQuery("fluid.all").list();
 	}
 
@@ -82,7 +83,7 @@ public class BankManagerHibernate implements BankManager {
 	public void deleteFluid(Fluid fluid) {
 		Fluid _fluid = (Fluid) sessionFactory.getCurrentSession().get(Fluid.class, fluid.getId());
 		
-		List<Donation> donation = getAllDonations();
+		List<Donation> donation = getAllDonation();
 		for(Donation d : donation){
 			for(Fluid f : d.getFluids()){
 				if(f.getId() == _fluid.getId()){
@@ -101,7 +102,7 @@ public class BankManagerHibernate implements BankManager {
 	}
 
 	@Override
-	public boolean editFluid(Flui fluid) {
+	public boolean editFluid(Fluid fluid) {
 		try{
 			sessionFactory.getCurrentSession().update(fluid);
 		}catch(Exception e){
@@ -111,7 +112,7 @@ public class BankManagerHibernate implements BankManager {
 	}
 
 	@Override
-	public List<Fluid> getOwnedFluids(Donation donation) {
+	public List<Fluid> getOwnedFluid(Donation donation) {
 		donation = (Donation) sessionFactory.getCurrentSession().get(Donation.class, donation.getId());
 		List<Fluid> fluid = new ArrayList<Fluid>(donation.getFluids());
 		return fluid;
@@ -119,8 +120,8 @@ public class BankManagerHibernate implements BankManager {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Fluid> getFreeFluids() {
-		return sessionFactory.getCurrentSession().getNamedQuery("fluids.notSold").list();
+	public List<Fluid> getFreeFluid() {
+		return sessionFactory.getCurrentSession().getNamedQuery("fluid.notSold").list();
 	}
 
 	@Override
@@ -131,5 +132,6 @@ public class BankManagerHibernate implements BankManager {
 		donation.getFluids().add(fluid);
 	}
 
+	
 }
 

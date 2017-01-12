@@ -12,55 +12,43 @@ import javax.persistence.NamedQuery;
 	@NamedQuery(name = "fluid.all", query = "Select f from Fluid f"),
 	@NamedQuery(name = "fluid.byId", query = "Select f from Fluid f where f.id = :id"),
 })
-
 public class Fluid {
-  
 	private Long id;
 	private String type;
 	private int volume;
 	private int value;
-	private Boolean availability = false;
-  
+	private boolean inDonation = false;
+	
+	public boolean isInDonation() {
+		return inDonation;
+	}
+	public void setInDonation(boolean inDonation) {
+		this.inDonation = inDonation;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
 		return id;
 	}
-	
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getType() {
 		return type;
 	}
-
 	public void setType(String type) {
 		this.type = type;
 	}
-
-	public String getVolume() {
+	public int getVolume() {
 		return volume;
 	}
-
-	public void setVolume(String volume) {
+	public void setVolume(int volume) {
 		this.volume = volume;
 	}
-  
-	public String getValue() {
+	public int getValue() {
 		return value;
 	}
-
-	public void setValue(String value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
-
-	public Boolean getAvailability() {
-		return Availability;
-	}
-
-	public void setAvailability(Boolean availability) {
-		this.availability = availability;
-	}
-
 }
