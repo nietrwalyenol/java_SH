@@ -1,4 +1,4 @@
-package com.example.shdemo.service;
+package com.mbyszof.bank.service;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.shdemo.domain.Fluid;
-import com.example.shdemo.domain.Donation;
+import com.mbyszof.bank.domain.Fluid;
+import com.mbyszof.bank.domain.Donation;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:/beans.xml" })

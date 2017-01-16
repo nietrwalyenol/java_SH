@@ -1,8 +1,8 @@
-package com.example.shdemo.service;
+package com.mbyszof.bank.service;
 
 import java.util.List;
-import com.example.shdemo.domain.Fluid;
-import com.example.shdemo.domain.Donation;
+import com.mbyszof.bank.domain.Fluid;
+import com.mbyszof.bank.domain.Donation;
 
 public interface BankManager {
 

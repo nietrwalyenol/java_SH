@@ -1,4 +1,4 @@
-package com.example.shdemo.service;
+package com.mbyszof.bank.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.shdemo.domain.Donation;
-import com.example.shdemo.domain.Fluid;
+import com.mbyszof.bank.domain.Donation;
+import com.mbyszof.bank.domain.Fluid;
 
 
 @Component

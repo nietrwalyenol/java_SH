@@ -1,4 +1,4 @@
-package com.example.shdemo.domain;
+package com.mbyszof.bank.domain;
 
 import java.util.ArrayList;
 import java.util.List;
